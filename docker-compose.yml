@@ -1,20 +1,13 @@
 version: '3'
 services:
     web:
-        build: .
+        image: andy008/docker-seeddms:6.0.8-3
         ports:
-            - 8080:80
-        links:
-            - db
+            - 80:80
         volumes:
             - data_volume:/var/www/seeddms/data
             - conf_volume:/var/www/seeddms/conf
             - ext_volume:/var/www/seeddms/www/ext
-    db:
-        image: postgres
-        environment:
-            - POSTGRES_PASSWORD=seeddms
-            - POSTGRES_USER=seeddms
 volumes:
     data_volume:
     conf_volume:
