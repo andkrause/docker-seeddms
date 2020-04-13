@@ -1,14 +1,18 @@
 version: '3'
 services:
-    web:
-        image: andy008/docker-seeddms:6.0.8-3
-        ports:
-            - 80:80
+    php-fpm:
+        image: andy008/php-fpm-seeddms:7.4
         volumes:
-            - data_volume:/var/www/seeddms/data
-            - conf_volume:/var/www/seeddms/conf
-            - ext_volume:/var/www/seeddms/www/ext
+            - seeddms:/var/www/seeddms
+    nginx:
+        image: nginx:1.16.1-alpine
+        ports: 
+            - 80:80
+        depends_on:
+            - php-fpm
+        volumes:
+            - seeddms:/var/www/seeddms
+            - nginxConfig:/etc/nginx/conf.d/
 volumes:
-    data_volume:
-    conf_volume:
-    ext_volume:
+    seeddms:
+    nginxConfig:
