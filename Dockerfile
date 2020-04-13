@@ -1,17 +1,4 @@
-FROM php:7.4-apache AS builder
-ARG SEEDDMS_VERSION=6.0.8
-
-RUN curl -fsSL https://downloads.sourceforge.net/project/seeddms/seeddms-${SEEDDMS_VERSION}/seeddms-quickstart-${SEEDDMS_VERSION}.tar.gz | tar -xzC /var/www \
-    && mv /var/www/seeddms60x /var/www/seeddms && touch /var/www/seeddms/conf/ENABLE_INSTALL_TOOL
-
-COPY sources/settings.xml /var/www/seeddms/conf/settings.xml
-
-RUN chown -R www-data:www-data /var/www/seeddms/
-    
-
-
-FROM php:7.4-apache
-LABEL maintainer="Ralph Pavenstaedt<ralph@pavenstaedt.com>"
+FROM php:7.4-fpm
 
 # Update and install necessary packages
 RUN apt-get update \
@@ -23,17 +10,12 @@ RUN apt-get update \
     && pear install Mail \
     && pear install Net_SMTP \
     && pear install HTTP_WebDAV_Server-1.0.0RC8 \
-    && a2enmod rewrite \
 ## Slim down apt
     && rm -rf /var/lib/apt/lists/*
-# Install Seeddms from builder
-COPY --from=builder /var/www /var/www
-
 
 # Copy settings-files
-COPY sources/php.ini /usr/local/etc/php/
-COPY sources/000-default.conf /etc/apache2/sites-available/
+COPY php.ini $PHP_INI_DIR/
 
 
 # Volumes to mount
-VOLUME [ "/var/www/seeddms/data", "/var/www/seeddms/conf", "/var/www/seeddms/www/ext" ]
+#VOLUME [ "/var/www/seeddms/data", "/var/www/seeddms/conf", "/var/www/seeddms/www/ext" ]
