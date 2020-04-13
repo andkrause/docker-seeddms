@@ -5,7 +5,7 @@ services:
         volumes:
             - seeddms:/var/www/seeddms
     nginx:
-        image: andy008/nginx:1.16.1-alpine
+        image: nginx:1.16.1-alpine
         ports: 
             - 80:80
         depends_on:
@@ -15,14 +15,4 @@ services:
             - nginxConfig:/etc/nginx/conf.d/
 volumes:
     seeddms:
-       driver: local
-       driver_opts:
-          o: bind
-          type: none
-          device: /Users/andy008/Documents/Servers/RaspberryPi4b/seeddms/docker-seeddms/volumes/seeddms
     nginxConfig:
-       driver: local
-       driver_opts:
-          o: bind
-          type: none
-          device: /Users/andy008/Documents/Servers/RaspberryPi4b/seeddms/docker-seeddms/volumes/nginxConfig/

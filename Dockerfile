@@ -17,5 +17,3 @@ RUN apt-get update \
 COPY php.ini $PHP_INI_DIR/
 
 
-# Volumes to mount
-#VOLUME [ "/var/www/seeddms/data", "/var/www/seeddms/conf", "/var/www/seeddms/www/ext" ]
