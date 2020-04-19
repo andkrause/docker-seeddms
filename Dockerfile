@@ -14,6 +14,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy settings-files
-COPY php.ini $PHP_INI_DIR/
+COPY sources/php.ini $PHP_INI_DIR/
+
 
 
