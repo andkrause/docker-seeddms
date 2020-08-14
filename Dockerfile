@@ -1,4 +1,4 @@
-FROM php:php:7.4.9-fpm-buster
+FROM php:7.4.9-fpm-buster
 
 # Update and install necessary packages
 RUN apt-get update \
