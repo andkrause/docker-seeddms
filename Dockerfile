@@ -1,10 +1,12 @@
-FROM php:7.4.9-fpm-buster
+FROM php:7.4.11-fpm-buster
 
 # Update and install necessary packages
 RUN apt-get update \
-    && apt-get install libpq-dev imagemagick id3 poppler-utils catdoc xpdf html2text docx2txt zlib1g-dev libpng-dev -y \
+    && apt-get install libpq-dev libmagickwand-dev imagemagick id3 poppler-utils catdoc xpdf html2text docx2txt zlib1g-dev libpng-dev -y \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install gd mysqli pdo pdo_mysql pdo_pgsql \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
     && pear channel-update pear.php.net \
     && pear install Log \
     && pear install Mail \
