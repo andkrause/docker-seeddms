@@ -7,6 +7,10 @@ updates:
       interval: "daily"
     assignees:
       - "andkrause"
+    ignore:
+      - dependency-name: "php"
+        # Ignore PHP 8
+        versions: ["8.x"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
