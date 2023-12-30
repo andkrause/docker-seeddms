@@ -9,8 +9,8 @@ updates:
       - "andkrause"
     ignore:
       - dependency-name: "php"
-        # Ignore major versions
-        update-types: ["version-update:semver-major"]
+        # Ignore minor versions
+        update-types: ["version-update:semver-patch"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
