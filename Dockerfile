@@ -1,4 +1,4 @@
-FROM php:8.3.12-fpm-bullseye
+FROM php:8.4.0RC3-fpm-bullseye
 
 # Update and install necessary packages
 RUN apt-get update \
