@@ -27,7 +27,12 @@ server {
   location / {
     try_files $uri $uri/ /index.php?$args;
   }
-
+  
+  include mime.types;
+  types {
+    text/javascript mjs;
+  }
+  
   client_max_body_size 50M;
 
   rewrite /wp-admin$ $scheme://$host$uri/ permanent;
