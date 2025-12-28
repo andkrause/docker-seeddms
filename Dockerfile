@@ -1,4 +1,4 @@
-FROM php:8.4.11-fpm-bullseye
+FROM php:8.4.16-fpm-trixie
 
 # Update and install necessary packages
 RUN apt-get update \
