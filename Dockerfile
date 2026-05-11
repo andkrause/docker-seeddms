@@ -1,4 +1,4 @@
-FROM php:8.5.5-fpm-trixie
+FROM php:8.5.6-fpm-trixie
 
 # Update and install necessary packages
 RUN apt-get update \
